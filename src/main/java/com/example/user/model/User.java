@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="user")
-public class User implements UserDetails{
+public class User implements UserDetails{// Defines the User class and implements UserDetails interface for Spring Security
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -33,17 +33,17 @@ public class User implements UserDetails{
 	
 	private String password;
 	
-	@Enumerated(value=EnumType.STRING)
-	Role role;
+	@Enumerated(value=EnumType.STRING) // Specifies the type of enum used for the 'role' field
+	Role role; // Represents the user's role
 	
 
-	// contructor without argument
+	// Default constructor 
 	public User() {
 	super();
-	// TODO Auto-generated constructor stub
-}
+	}
 
-	//constructor with arguments
+	
+	// Parameterized constructor
 	public User(int id, String firstName, String lastName, String userName, String password, Role role) {
 		super();
 		this.id = id;
@@ -106,46 +106,47 @@ public class User implements UserDetails{
 	}
 
 	
-	// Abstract methods 
+	
+	
+	// Override methods from UserDetails interface 
 	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
+		// Return a collection of granted authorities for the user (e.g., roles)
 		return List.of(new SimpleGrantedAuthority(role.name()));
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
+		// Return the user name of the user
 		return null;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
+		// Return whether the user's account is not expired
+		return true; // Assuming the account never expires
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
+	// Return whether the user's account is not locked
+		return true; // Assuming the account is never locked
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
+		// Return whether the user's credentials are not expired
+		return true; // Assuming the credentials never expire
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		// Return whether the user's account is enabled
+		return true; // Assuming the account is always enabled}
+	
 	}
-	
-	
 	
 
 }
