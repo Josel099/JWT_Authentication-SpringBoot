@@ -12,6 +12,11 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Integer>{
 
 	
+	/**=====================================================
+	 * Declare a method to find a user by username
+	 * Optional is used to represent a nullable result
+	 * Method name follows Spring Data JPA naming conventions
+	 ======================================================== */
 	
 	Optional<User> findByUsername(String username);
 	

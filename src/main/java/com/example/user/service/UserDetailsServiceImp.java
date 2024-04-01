@@ -14,7 +14,7 @@ import com.example.user.repository.UserRepository;
 public class UserDetailsServiceImp implements UserDetailsService{
 	
 	
-	@Autowired //custom annotation
+	 @Autowired //custom annotation
 	private final UserRepository userRepository ;
 	
 	// constructor 

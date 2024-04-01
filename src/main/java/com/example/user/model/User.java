@@ -120,7 +120,7 @@ public class User implements UserDetails{// Defines the User class and implement
 	@Override
 	public String getUsername() {
 		// Return the user name of the user
-		return null;
+		return userName;
 	}
 
 	@Override
