@@ -1,9 +1,10 @@
 package com.example.user.service;
 
-import java.util.Optional;
+
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,7 @@ public class AuthenticationService {
 	user. setLastName(request.getLastName());
 	user. setUserName (request.getUserName());
 	user. setPassword (passwordEncoder. encode(request.getPassword()));
-	user. setRole(user.getRole());
+	user. setRole(request.getRole());
 	user = userRepository. save(user);
 	
 	String token = jwtService.generateToken(user);
@@ -64,7 +65,7 @@ public class AuthenticationService {
 						request.getPassword()));
 		
 		
-		User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+		User user = userRepository.findByUserName(request.getUsername()).orElseThrow(()-> new UsernameNotFoundException("Username not found"));
 		
 		String token =  jwtService.generateToken(user);
 		
