@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name="user")
+@Table
 public class User implements UserDetails{// Defines the User class and implements UserDetails interface for Spring Security
 	
 	@Id
@@ -108,9 +108,7 @@ public class User implements UserDetails{// Defines the User class and implement
 	
 	
 	
-	// Override methods from UserDetails interface 
-	
-	
+	// Override methods from UserDetails interface
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// Return a collection of granted authorities for the user (e.g., roles)
